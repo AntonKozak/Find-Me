@@ -30,3 +30,5 @@ npm i -D @types/bcryptjs --legacy-peer-deps # For TypeScript support .
 npm install --save react-toastify --legacy-peer-deps.
 
 npm i date-fns --legacy-peer-deps # For date formatting .
+
+npm i cloudinary next-cloudinary --legacy-peer-deps .

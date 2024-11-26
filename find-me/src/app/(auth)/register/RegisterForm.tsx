@@ -2,6 +2,7 @@
 
 import { registerUser } from '@/app/actions/authActions';
 import { registerSchema, RegisterSchema } from '@/lib/schemas/registerSchema';
+import { handleFormServerErrors } from '@/lib/util';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@nextui-org/button';
 import { Card, CardHeader, CardBody, Input } from '@nextui-org/react';
@@ -26,18 +27,7 @@ export default function RegisterForm() {
       console.log('User registered successfully');
       return;
     } else {
-      if (Array.isArray(result.error)) {
-        result.error.forEach((error) => {
-          console.log(error.message);
-          const fieldName = error.path.join('.') as
-            | 'email'
-            | 'password'
-            | 'name';
-          setError(fieldName, { message: error.message });
-        });
-      } else {
-        setError('root.serverError', { message: result.error });
-      }
+      handleFormServerErrors(result, setError);
     }
   };
 
